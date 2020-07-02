@@ -1,6 +1,6 @@
 <?php
 
-session_start();    //TODO who is it
+session_start();
 
 date_default_timezone_set('Europe/Moscow');
 $currentTime = date('H:i:s');

@@ -19,6 +19,10 @@ function checkX() {
 
 function checkY() {
     let yStr = document.getElementById("input-y-text").value.replace(",", ".");
+    if (yStr.length === 0) {
+        document.getElementById('error').innerHTML = "<br><br>";
+        return false;
+    }
     if (!/^-?[0-9]\d*(\.\d+)?$/.test(yStr) || getY() < -3 || getY() > 5) {
         document.getElementById('error').innerHTML = "Значение Y должно быть в диапазоне [-3;5]";
         hideDot();
@@ -180,7 +184,6 @@ function getR() {
 }
 
 function resetButtonDo() {
-    //TODO clean table
     const list = document.getElementsByTagName("input");
     for (let i = 0; i < list.length; i++) {
         if (list[i].type === 'checkbox') {
@@ -190,4 +193,7 @@ function resetButtonDo() {
         }
     }
     document.getElementById('error').innerHTML = "<br><br>";
+    let tableBody = $('#response-table > tbody');
+    tableBody.empty();
+    hideDot();
 }
