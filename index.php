@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <link href="css/main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.png">
 </head>
 
 <body>
 <script src="js/jQuery-3.5.1.js"></script>
 <script src="js/main.js"></script>
+
 <header>
     <div id="lab">
         <span id="variant">Вариант: 2410</span>
@@ -68,6 +70,8 @@
                 <!-- third figure -->
                 <polygon class="svg-figure triangle" fill="red" fill-opacity="0.3" points="250,150 150,200 150,150"
                          stroke="red"/>
+
+                <circle r="0" cx="150" cy="150" id="target-dot"></circle>
             </svg>
         </div>
         <div id="user-input">
@@ -76,15 +80,15 @@
                     <div class="input-titles">
                         <span>Выберите X координату</span>
                     </div>
-                    <input class="xCheckBox" id="xCheckBox1" onchange="checkX()" type="checkbox">-4 <br>
-                    <input class="xCheckBox" id="xCheckBox2" onchange="checkX()" type="checkbox">-3 <br>
-                    <input class="xCheckBox" id="xCheckBox3" onchange="checkX()" type="checkbox">-2 <br>
-                    <input class="xCheckBox" id="xCheckBox4" onchange="checkX()" type="checkbox">-1 <br>
-                    <input class="xCheckBox" id="xCheckBox5" onchange="checkX()" type="checkbox"> 0 <br>
-                    <input class="xCheckBox" id="xCheckBox6" onchange="checkX()" type="checkbox"> 1 <br>
-                    <input class="xCheckBox" id="xCheckBox7" onchange="checkX()" type="checkbox"> 2 <br>
-                    <input class="xCheckBox" id="xCheckBox8" onchange="checkX()" type="checkbox"> 3 <br>
-                    <input class="xCheckBox" id="xCheckBox9" onchange="checkX()" type="checkbox"> 4 <br>
+                    <input class="xCheckBox" id="xCheckBox1" onchange="intermediateCheckX()" type="checkbox">-4 <br>
+                    <input class="xCheckBox" id="xCheckBox2" onchange="intermediateCheckX()" type="checkbox">-3 <br>
+                    <input class="xCheckBox" id="xCheckBox3" onchange="intermediateCheckX()" type="checkbox">-2 <br>
+                    <input class="xCheckBox" id="xCheckBox4" onchange="intermediateCheckX()" type="checkbox">-1 <br>
+                    <input class="xCheckBox" id="xCheckBox5" onchange="intermediateCheckX()" type="checkbox"> 0 <br>
+                    <input class="xCheckBox" id="xCheckBox6" onchange="intermediateCheckX()" type="checkbox"> 1 <br>
+                    <input class="xCheckBox" id="xCheckBox7" onchange="intermediateCheckX()" type="checkbox"> 2 <br>
+                    <input class="xCheckBox" id="xCheckBox8" onchange="intermediateCheckX()" type="checkbox"> 3 <br>
+                    <input class="xCheckBox" id="xCheckBox9" onchange="intermediateCheckX()" type="checkbox"> 4 <br>
                 </div>
                 <div id="input-y">
                     <div class="input-titles">
@@ -96,11 +100,11 @@
                     <div class="input-titles">
                         <span>Выберите R</span>
                     </div>
-                    <input class="rCheckBox" id="rCheckBox1" onchange="checkR()" type="checkbox"> 1 <br>
-                    <input class="rCheckBox" id="rCheckBox2" onchange="checkR()" type="checkbox"> 1.5 <br>
-                    <input class="rCheckBox" id="rCheckBox3" onchange="checkR()" type="checkbox"> 2 <br>
-                    <input class="rCheckBox" id="rCheckBox4" onchange="checkR()" type="checkbox"> 2.5 <br>
-                    <input class="rCheckBox" id="rCheckBox5" onchange="checkR()" type="checkbox"> 3 <br>
+                    <input class="rCheckBox" id="rCheckBox1" onchange="intermediateCheckR()" type="checkbox"> 1 <br>
+                    <input class="rCheckBox" id="rCheckBox2" onchange="intermediateCheckR()" type="checkbox"> 1.5 <br>
+                    <input class="rCheckBox" id="rCheckBox3" onchange="intermediateCheckR()" type="checkbox"> 2 <br>
+                    <input class="rCheckBox" id="rCheckBox4" onchange="intermediateCheckR()" type="checkbox"> 2.5 <br>
+                    <input class="rCheckBox" id="rCheckBox5" onchange="intermediateCheckR()" type="checkbox"> 3 <br>
                 </div>
                 <div id="buttons">
                     <button id="submit-button" onclick="validateAndSend()" type="button">Чекнуть</button>
@@ -113,37 +117,34 @@
         </div>
     </div>
     <div id="response">
-
-    </div>
-    <!-- <div id="response-table">
-        <table>
+        <table id="response-table">
+            <thead>
             <tr>
-                <td>
+                <th>
                     X
-                </td>
-                <td>
+                </th>
+                <th>
                     Y
-                </td>
-                <td>
+                </th>
+                <th>
                     R
-                </td>
-                <td>
+                </th>
+                <th>
                     Результат
-                </td>
-                <td>
+                </th>
+                <th>
                     Время
-                </td>
-                <td>
+                </th>
+                <th>
                     Время выполнения
-                </td>
+                </th>
             </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
         </table>
-    </div> -->
-    <!-- TODO раскомментить и починить -->
-    <!-- <footer>
-        <span>Made with &#10084; by </span>
-        <a href="https://github.com/sloning"> me</a>
-    </footer> -->
+    </div>
 </main>
 </body>
 </html>

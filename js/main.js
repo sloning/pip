@@ -19,11 +19,13 @@ function checkX() {
 
 function checkY() {
     let yStr = document.getElementById("input-y-text").value.replace(",", ".");
-    if (!/^\d+$/.test(yStr) || getY() < -3 || getY() > 5) {
+    if (!/^-?[0-9]\d*(\.\d+)?$/.test(yStr) || getY() < -3 || getY() > 5) {
         document.getElementById('error').innerHTML = "Значение Y должно быть в диапазоне [-3;5]";
+        hideDot();
         return false;
     }
     document.getElementById('error').innerHTML = "<br><br>";
+    showDot();
     return true;
 }
 
@@ -36,17 +38,73 @@ function checkR() {
         }
     }
     if (count === 0) {
-        document.getElementById('error').innerHTML = "Нужно выбрать хотя бы 1 R <br>";
+        document.getElementById('error').innerHTML = "Нужно выбрать хотя бы 1 R <br><br>";
         return false;
     } else if (count > 1) {
-        document.getElementById('error').innerHTML = "Нельзя выбирать несколько R! <br>";
+        document.getElementById('error').innerHTML = "Нельзя выбирать несколько R! <br><br>";
         return false;
     }
     document.getElementById('error').innerHTML = "<br><br>";
     return true;
 }
 
-function finalValidation() {
+function intermediateCheckX() {
+    const list = document.getElementsByClassName("xCheckBox");
+    let count = 0;
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].checked) {
+            count++;
+        }
+    }
+    if (count > 1) {
+        document.getElementById('error').innerHTML = "Нельзя выбирать несколько координат X! <br>";
+        hideDot();
+        return false;
+    }
+    document.getElementById('error').innerHTML = "<br><br>";
+    showDot();
+    return true;
+}
+
+function intermediateCheckR() {
+    const list = document.getElementsByClassName("rCheckBox");
+    let count = 0;
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].checked) {
+            count++;
+        }
+    }
+    if (count > 1) {
+        document.getElementById('error').innerHTML = "Нельзя выбирать несколько R! <br><br>";
+        hideDot();
+        return false;
+    }
+    document.getElementById('error').innerHTML = "<br><br>";
+    showDot();
+    return true;
+}
+
+function showDot() {
+    let y = getY();
+    let x = getX();
+    let r = getR();
+
+    if (!isNaN(y) && !isNaN(x) && !isNaN(r)) {
+        let calculatedX = 2 * (x * 50 / r) + 150;
+        let calculatedY = -(((y * 50 * 2) / r) - 150);
+
+        let dotTarget = $("#target-dot");
+        dotTarget.attr("r", 5);
+        dotTarget.attr("cy", calculatedY);
+        dotTarget.attr("cx", calculatedX);
+        console.log("X: " + calculatedX);
+        console.log("Y: " + calculatedY)
+    }
+}
+
+function hideDot() {
+    let dotTarget = $("#target-dot");
+    dotTarget.attr("r", 0);
 }
 
 function validateAndSend() {
@@ -59,28 +117,18 @@ function validateAndSend() {
             type: "POST",
             url: "php/main.php",
             data: {x: x, y: y, r: r},
-            success: function (msg) {
-                $('#response').html(msg);
+            success: function (response) {
+                $('#response-table > tbody').append(response);
             }
         });
     }
 }
 
-function alertContents(xhr) {
-    if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-            alert(xhr.responseText);
-        } else {
-            alert('С запросом возникла проблема.');
-        }
-    }
-}
-
 function getX() {
-    var list = document.getElementsByClassName("xCheckBox");
-    for (var i = 0; i < list.length; i++) {
+    const list = document.getElementsByClassName("xCheckBox");
+    for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
-            var checkbox = list[i];
+            const checkbox = list[i];
             switch (checkbox.id) {
                 case 'xCheckBox1':
                     return -4;
@@ -111,10 +159,10 @@ function getY() {
 }
 
 function getR() {
-    var list = document.getElementsByClassName("rCheckBox");
+    const list = document.getElementsByClassName("rCheckBox");
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
-            var checkbox = list[i];
+            const checkbox = list[i];
             switch (checkbox.id) {
                 case 'rCheckBox1':
                     return 1;
@@ -133,8 +181,8 @@ function getR() {
 
 function resetButtonDo() {
     //TODO clean table
-    var list = document.getElementsByTagName("input");
-    for (var i = 0; i < list.length; i++) {
+    const list = document.getElementsByTagName("input");
+    for (let i = 0; i < list.length; i++) {
         if (list[i].type === 'checkbox') {
             list[i].checked = false;
         } else {
