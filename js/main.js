@@ -49,21 +49,30 @@ function checkR() {
 function finalValidation() {
 }
 
-function submit() {
+function validateAndSend() {
     if (checkX() && checkY() && checkR()) {
         let x = getX();
         let y = getY();
         let r = getR();
 
-        const xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            const serverResponse = document.getElementById('response');
-            serverResponse.innerHTML = this.responseText;
-        };
+        $.ajax({
+            type: "POST",
+            url: "main.php",
+            data: {x: x, y: y, r: r},
+            success: function (msg) {
+                $('#response').html(msg);
+            }
+        });
+    }
+}
 
-        xhr.open("POST", "php/main.php");
-        xhr.setRequestHeader("Content-type", "application/x-www-urlencoded");
-        xhr.send("msg=works");
+function alertContents(xhr) {
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            alert(xhr.responseText);
+        } else {
+            alert('С запросом возникла проблема.');
+        }
     }
 }
 
