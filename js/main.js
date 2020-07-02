@@ -57,7 +57,7 @@ function validateAndSend() {
 
         $.ajax({
             type: "POST",
-            url: "main.php",
+            url: "php/main.php",
             data: {x: x, y: y, r: r},
             success: function (msg) {
                 $('#response').html(msg);
