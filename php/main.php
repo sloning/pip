@@ -16,7 +16,7 @@ if (in_array($x, array(-4, -3, -2, -1, 0, 1, 2, 3, 4)) || is_numeric($y) || $y >
         $popadanie = 'Попадание';
     } else if ($x >= 0 && $x <= $r && $y >= ($x - $r) / 2) {
         $popadanie = 'Попадание';
-    } else if (sqrt($x * $x + $y * $y) <= $r && $y < 0 && $x < 0) {
+    } else if (sqrt($x * $x + $y * $y) <= $r && $y <= 0 && $x <= 0) {
         $popadanie = 'Попадание';
     }
 }
@@ -26,8 +26,11 @@ $executeTime = number_format((float)$executeTime, 3, '.', '');
 
 $result = array($x, $y, $r, $popadanie, $currentTime, $executeTime);
 
-$respone = "<tr><td>" . $x . "</td><td>" . $y . "</td><td>" . $r . "</td><td>" . $popadanie . "</td><td>" . $currentTime . "</td><td>" . $executeTime;
+$response = "<tr><td>" . $x . "</td><td>" . $y . "</td><td>" . $r . "</td><td>" . $popadanie . "</td><td>" . $currentTime . "</td><td>" . $executeTime;
 
-echo $respone;
+if (!isset($_SESSION['history'])) {
+    $_SESSION['history'] = '';
+}
+$_SESSION['history'] .= $response;
 
-?>
+echo $_SESSION['history'];

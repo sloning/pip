@@ -101,8 +101,6 @@ function showDot() {
         dotTarget.attr("r", 5);
         dotTarget.attr("cy", calculatedY);
         dotTarget.attr("cx", calculatedX);
-        console.log("X: " + calculatedX);
-        console.log("Y: " + calculatedY)
     }
 }
 
@@ -122,7 +120,9 @@ function validateAndSend() {
             url: "php/main.php",
             data: {x: x, y: y, r: r},
             success: function (response) {
-                $('#response-table > tbody').append(response);
+                let table = $('#response-table > tbody');
+                table.empty();
+                table.append(response);
             }
         });
     }
@@ -196,4 +196,7 @@ function resetButtonDo() {
     let tableBody = $('#response-table > tbody');
     tableBody.empty();
     hideDot();
+    fetch('php/clear.php', {
+        method: 'POST',
+    });
 }
