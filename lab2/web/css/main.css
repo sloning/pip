@@ -1,0 +1,113 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(240, 240, 240);
+    align-items: center;
+    font-size: 36px;
+    color: black;
+}
+
+#lab {
+    margin-left: 15px;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+}
+
+#me {
+    font-style: italic;
+    color: black;
+}
+
+#main-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    align-items: center;
+}
+
+@supports not (-ms-ime-align: auto) {
+    #main-section {
+        justify-content: space-evenly
+    }
+}
+
+circle {
+    transition: all 1s;
+}
+
+#target-dot {
+    fill: chartreuse;
+}
+
+.input-titles {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#user-input {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    width: 400px;
+}
+
+#user-input input {
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+#input-x,
+#input-y,
+#input-r {
+    margin-bottom: 5%;
+}
+
+#input-y-text {
+    width: 98%;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#buttons button {
+    width: 150px;
+}
+
+#error {
+    color: red;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#response {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    text-align: center;
+}
+
+table, tr, td, th {
+    border: 1px solid black;
+}

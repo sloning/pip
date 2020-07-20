@@ -11,7 +11,7 @@ $y = $_POST['y'];
 $r = $_POST['r'];
 $popadanie = 'Промах';
 
-if (in_array($x, array(-4, -3, -2, -1, 0, 1, 2, 3, 4)) || is_numeric($y) || $y >= -3 || $y <= 5 || in_array($r, array(1, 1.5, 2, 2.5, 3))) {
+if (in_array($x, array(-4, -3, -2, -1, 0, 1, 2, 3, 4)) && is_numeric($y) && $y >= -3 && $y <= 5 && in_array($r, array(1, 1.5, 2, 2.5, 3))) {
     if ($x >= 0 && $x <= $r && $y >= 0 && $y <= $r) {
         $popadanie = 'Попадание';
     } else if ($x >= 0 && $x <= $r && $y >= ($x - $r) / 2) {

@@ -17,7 +17,7 @@
         <span id="variant">Вариант: 2410</span>
     </div>
     <div id="info">
-        <span id="me">Кузнецов Владислав, P3113</span>
+        <span id="me">Кузнецов Владислав, P3213</span>
     </div>
 </header>
 
