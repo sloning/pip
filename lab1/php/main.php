@@ -19,6 +19,9 @@ if (in_array($x, array(-4, -3, -2, -1, 0, 1, 2, 3, 4)) && is_numeric($y) && $y >
     } else if (sqrt($x * $x + $y * $y) <= $r && $y <= 0 && $x <= 0) {
         $popadanie = 'Попадание';
     }
+} else {
+    http_response_code(400);
+    return;
 }
 
 $executeTime = (microtime(true) - $startTime) * 1000;
