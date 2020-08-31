@@ -1,5 +1,6 @@
 function checkX() {
-    const list = document.getElementsByClassName("xCheckBox");
+    const list = $('.xCheckBox');
+    const error = $('#error');
     let count = 0;
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
@@ -7,34 +8,42 @@ function checkX() {
         }
     }
     if (count === 0) {
-        document.getElementById('error').innerHTML = "Нужно выбрать хотя бы 1 координату X <br>";
+        error.html("Нужно выбрать хотя бы 1 координату X");
+        error.css("margin-bottom", "0px");
         return false;
     } else if (count > 1) {
-        document.getElementById('error').innerHTML = "Нельзя выбирать несколько координат X! <br>";
+        error.html("Нельзя выбирать несколько координат X!");
+        error.css("margin-bottom", "0px");
         return false;
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    error.html("");
+    error.css("margin-bottom", "58px");
     return true;
 }
 
 function checkY() {
+    const error = $('#error');
     let yStr = document.getElementById("input-y-text").value.replace(",", ".");
     if (yStr.length === 0) {
-        document.getElementById('error').innerHTML = "<br><br>";
+        error.html("");
+        error.css("margin-bottom", "58px");
         return false;
     }
     if (!/^-?[0-9]\d*(\.\d+)?$/.test(yStr) || getY() < -3 || getY() > 5) {
-        document.getElementById('error').innerHTML = "Значение Y должно быть в диапазоне [-3;5]";
+        error.html("Значение Y должно быть в диапазоне [-3;5]");
+        error.css("margin-bottom", "0px");
         hideDot();
         return false;
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    error.html("");
+    error.css("margin-bottom", "58px");
     showDot();
     return true;
 }
 
 function checkR() {
-    const list = document.getElementsByClassName("rCheckBox");
+    const error = $('#error');
+    const list = $('.rCheckBox');
     let count = 0;
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
@@ -42,18 +51,22 @@ function checkR() {
         }
     }
     if (count === 0) {
-        document.getElementById('error').innerHTML = "Нужно выбрать хотя бы 1 R <br><br>";
+        error.html("Нужно выбрать хотя бы 1 R");
+        error.css("margin-bottom", "29px");
         return false;
     } else if (count > 1) {
-        document.getElementById('error').innerHTML = "Нельзя выбирать несколько R! <br><br>";
+        error.html("Нельзя выбирать несколько R!");
+        error.css("margin-bottom", "29px");
         return false;
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    error.html("");
+    error.css("margin-bottom", "58px");
     return true;
 }
 
 function intermediateCheckX() {
-    const list = document.getElementsByClassName("xCheckBox");
+    const list = $('.xCheckBox');
+    const error = $('#error');
     let count = 0;
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
@@ -61,17 +74,20 @@ function intermediateCheckX() {
         }
     }
     if (count > 1) {
-        document.getElementById('error').innerHTML = "Нельзя выбирать несколько координат X! <br>";
+        error.html("Нельзя выбирать несколько координат X!");
+        error.css("margin-bottom", "0px");
         hideDot();
         return false;
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    error.html("");
+    error.css("margin-bottom", "58px");
     showDot();
     return true;
 }
 
 function intermediateCheckR() {
-    const list = document.getElementsByClassName("rCheckBox");
+    const error = $('#error');
+    const list = $('.rCheckBox');
     let count = 0;
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
@@ -79,11 +95,13 @@ function intermediateCheckR() {
         }
     }
     if (count > 1) {
-        document.getElementById('error').innerHTML = "Нельзя выбирать несколько R! <br><br>";
+        error.html("Нельзя выбирать несколько R!");
+        error.css("margin-bottom", "29px");
         hideDot();
         return false;
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    error.html("");
+    error.css("margin-bottom", "58px");
     showDot();
     return true;
 }
@@ -129,7 +147,7 @@ function validateAndSend() {
 }
 
 function getX() {
-    const list = document.getElementsByClassName("xCheckBox");
+    const list = $('.xCheckBox');
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
             const checkbox = list[i];
@@ -163,7 +181,7 @@ function getY() {
 }
 
 function getR() {
-    const list = document.getElementsByClassName("rCheckBox");
+    const list = $('.rCheckBox');
     for (let i = 0; i < list.length; i++) {
         if (list[i].checked) {
             const checkbox = list[i];
@@ -184,7 +202,7 @@ function getR() {
 }
 
 function resetButtonDo() {
-    const list = document.getElementsByTagName("input");
+    const list = $('input');
     for (let i = 0; i < list.length; i++) {
         if (list[i].type === 'checkbox') {
             list[i].checked = false;
@@ -192,7 +210,9 @@ function resetButtonDo() {
             list[i].value = "";
         }
     }
-    document.getElementById('error').innerHTML = "<br><br>";
+    const error = $('#error');
+    error.html("");
+    error.css("margin-bottom", "58px");
     let tableBody = $('#response-table > tbody');
     tableBody.empty();
     hideDot();

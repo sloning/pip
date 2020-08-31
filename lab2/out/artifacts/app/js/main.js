@@ -212,5 +212,4 @@ function resetButtonDo() {
         headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
         body: request
     }).catch(err => alert("Ошибка HTTP ${err.textContent}. Повторите попытку позже."));
-
-}   //TODO почистить хттп сессию на бэке
+}
