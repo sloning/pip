@@ -14,10 +14,9 @@ public class ControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getParameter("key").equals("reset"))
             getServletContext().getNamedDispatcher("AreaChecker").forward(req, resp);
-        if (req.getParameter("x") == null || req.getParameter("y") == null || req.getParameter("r") == null
-        || req.getParameter("key") == null)
-            req.getServletContext().getNamedDispatcher("Controller").forward(req, resp);
-        else getServletContext().getNamedDispatcher("AreaChecker").forward(req, resp);
+        else if (req.getParameter("key").equals("point"))
+            req.getServletContext().getNamedDispatcher("AreaChecker").forward(req, resp);
+        else getServletContext().getNamedDispatcher("Controller").forward(req, resp);
     }
 
     @Override

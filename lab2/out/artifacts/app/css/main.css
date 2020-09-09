@@ -53,6 +53,10 @@ circle {
     fill: chartreuse;
 }
 
+.clickDots {
+    fill: black;
+}
+
 .input-titles {
     text-align: left;
     margin-bottom: 10px;
@@ -80,6 +84,16 @@ circle {
     width: 98%;
 }
 
+#rButtons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#rButtons button {
+    width: 100%;
+}
+
 #buttons {
     display: flex;
     justify-content: space-between;
@@ -94,6 +108,7 @@ circle {
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-bottom: 58px;
 }
 
 #response {

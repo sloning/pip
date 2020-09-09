@@ -22,15 +22,15 @@ public class Point {
     }
 
     private boolean checkSquare() {
-        return x >= 0 && x <= r && y >= 0 && y <= r;
+        return x >= 0 && x <= r && y >= 0 && y <= r / 2;
     }
 
     private boolean checkTriangle() {
-        return x >= 0 && x <= r && y >= (x - r) / 2 && y <= 0;
+        return x >= 0 && x <= r && y >= (x - r) && y <= 0;
     }
 
     private boolean checkCircle() {
-        return sqrt(x * x + y * y) <= r && y <= 0 && x <= 0;
+        return sqrt(x * x + y * y) <= r && y >= 0 && x <= 0;
     }
 
     public double getX() {
@@ -54,7 +54,7 @@ public class Point {
         SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate=formatter.format(new Date());
 
-        return "<tr><td>" + x + "</td><td>" + y + "</td><td>" + r + "</td><td>" + popadanie + "</td><td>" +
+        return "<tr><td>" + x + "</td><td>" + y + "</td><td>" + (int) r + "</td><td>" + popadanie + "</td><td>" +
                 formattedDate + "</td>";
     }
 }

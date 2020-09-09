@@ -177,6 +177,7 @@ function getX() {
 
 function getY() {
     let yStr = document.getElementById("input-y-text").value.replace(",", ".");
+
     return parseFloat(yStr);
 }
 

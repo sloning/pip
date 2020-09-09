@@ -16,7 +16,7 @@
 
 <header>
     <div id="lab">
-        <span id="variant">Вариант: 2410</span>
+        <span id="variant">Вариант: 8981</span>
     </div>
     <div id="info">
         <span id="me">Кузнецов Владислав, P3213</span>
@@ -62,15 +62,15 @@
                 <text class="coor-text" fill="black" x="160" y="255">-R</text>
 
                 <!-- first figure square-->
-                <polygon class="svg-figure square" fill="blue" fill-opacity="0.3" points="150,50 150,150 250,150 250,50"
+                <polygon class="svg-figure square" fill="blue" fill-opacity="0.3" points="150,100 150,150 250,150 250,100"
                          stroke="blue"></polygon>
 
                 <!-- second figure circle -->
-                <path class="svg-figure circle" d="m 50 150 h 100 v 100 A 100 100 0 0 1 50 150 z" fill="green"
+                <path class="svg-figure circle" d="m 50 150 h 100 v -100 A 100 100 0 0 0 50 150 z" fill="green"
                       fill-opacity="0.3" stroke="green"></path>
 
                 <!-- third figure -->
-                <polygon class="svg-figure triangle" fill="red" fill-opacity="0.3" points="250,150 150,200 150,150"
+                <polygon class="svg-figure triangle" fill="red" fill-opacity="0.3" points="250,150 150,250 150,150"
                          stroke="red"></polygon>
 
                 <circle r="0" cx="150" cy="150" id="target-dot"></circle>
@@ -82,15 +82,15 @@
                     <div class="input-titles">
                         <span>Выберите X координату</span>
                     </div>
-                    <input class="xCheckBox" id="xCheckBox1" onchange="intermediateCheckX()" type="checkbox">-4 <br>
-                    <input class="xCheckBox" id="xCheckBox2" onchange="intermediateCheckX()" type="checkbox">-3 <br>
-                    <input class="xCheckBox" id="xCheckBox3" onchange="intermediateCheckX()" type="checkbox">-2 <br>
-                    <input class="xCheckBox" id="xCheckBox4" onchange="intermediateCheckX()" type="checkbox">-1 <br>
-                    <input class="xCheckBox" id="xCheckBox5" onchange="intermediateCheckX()" type="checkbox"> 0 <br>
-                    <input class="xCheckBox" id="xCheckBox6" onchange="intermediateCheckX()" type="checkbox"> 1 <br>
-                    <input class="xCheckBox" id="xCheckBox7" onchange="intermediateCheckX()" type="checkbox"> 2 <br>
-                    <input class="xCheckBox" id="xCheckBox8" onchange="intermediateCheckX()" type="checkbox"> 3 <br>
-                    <input class="xCheckBox" id="xCheckBox9" onchange="intermediateCheckX()" type="checkbox"> 4 <br>
+                    <input name="x" class="xRadio" id="xRadio1" onchange="checkX()" type="radio">-3 <br>
+                    <input name="x" class="xRadio" id="xRadio2" onchange="checkX()" type="radio">-2 <br>
+                    <input name="x" class="xRadio" id="xRadio3" onchange="checkX()" type="radio">-1 <br>
+                    <input name="x" class="xRadio" id="xRadio4" onchange="checkX()" type="radio"> 0 <br>
+                    <input name="x" class="xRadio" id="xRadio5" onchange="checkX()" type="radio"> 1 <br>
+                    <input name="x" class="xRadio" id="xRadio6" onchange="checkX()" type="radio"> 2 <br>
+                    <input name="x" class="xRadio" id="xRadio7" onchange="checkX()" type="radio"> 3 <br>
+                    <input name="x" class="xRadio" id="xRadio8" onchange="checkX()" type="radio"> 4 <br>
+                    <input name="x" class="xRadio" id="xRadio9" onchange="checkX()" type="radio"> 5 <br>
                 </div>
                 <div id="input-y">
                     <div class="input-titles">
@@ -102,20 +102,20 @@
                     <div class="input-titles">
                         <span>Выберите R</span>
                     </div>
-                    <input class="rCheckBox" id="rCheckBox1" onchange="intermediateCheckR()" type="checkbox"> 1 <br>
-                    <input class="rCheckBox" id="rCheckBox2" onchange="intermediateCheckR()" type="checkbox"> 1.5 <br>
-                    <input class="rCheckBox" id="rCheckBox3" onchange="intermediateCheckR()" type="checkbox"> 2 <br>
-                    <input class="rCheckBox" id="rCheckBox4" onchange="intermediateCheckR()" type="checkbox"> 2.5 <br>
-                    <input class="rCheckBox" id="rCheckBox5" onchange="intermediateCheckR()" type="checkbox"> 3 <br>
+                    <div id="rButtons">
+                        <button class="rButton" id="rButton1" onclick="selectR(1)" type="button">1</button>
+                        <button class="rButton" id="rButton2" onclick="selectR(2)" type="button">2</button>
+                        <button class="rButton" id="rButton3" onclick="selectR(3)" type="button">3</button>
+                        <button class="rButton" id="rButton4" onclick="selectR(4)" type="button">4</button>
+                        <button class="rButton" id="rButton5" onclick="selectR(5)" type="button">5</button>
+                    </div>
                 </div>
                 <div id="buttons">
                     <button id="submit-button" onclick="validateAndSend()" type="button">Чекнуть</button>
                     <button id="reset-button" onclick="resetButtonDo()" type="button">Прибрать за собой</button>
                 </div>
             </form>
-            <div id="error">
-                <br> <br>
-            </div>
+            <div id="error"></div>
         </div>
     </div>
     <div id="response">

@@ -22,21 +22,25 @@ public class AreaCheckerServlet extends HttpServlet {
                 tableRows = new ArrayList<>();
                 session.setAttribute("tableRows", tableRows);
             }
-            double x = Double.parseDouble(req.getParameter("x"));
-            double y = Double.parseDouble(req.getParameter("y"));
-            double r = Double.parseDouble(req.getParameter("r"));
-            try (PrintWriter writer = resp.getWriter()) {
-                if (checkData(x, y, r)) {
-                    tableRows.add(new Point(x, y, r).toString());
-                    for (String tableRow : tableRows) writer.println(tableRow);
-                } else resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            try {
+                double x = Double.parseDouble(req.getParameter("x"));
+                double y = Double.parseDouble(req.getParameter("y"));
+                double r = Double.parseDouble(req.getParameter("r"));
+                try (PrintWriter writer = resp.getWriter()) {
+                    if (checkData(x, y, r)) {
+                        tableRows.add(new Point(x, y, r).toString());
+                        for (String tableRow : tableRows) writer.println(tableRow);
+                    } else resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                }
+            } catch (Exception e) {
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
             }
         }
     }
 
     private boolean checkData(double x, double y, double r) {
-        Double[] rInterval = {1.0, 1.5, 2.0, 2.5, 3.0};
-        return (Arrays.asList(rInterval).contains(r)) && y >= -3 && y <= 5 && x >= -4 && x <= 4;
+        Double[] rInterval = {1.0, 2.0, 3.0, 4.0, 5.0};
+        return (Arrays.asList(rInterval).contains(r)) && y >= -3 && y <= 3 && x >= -3 && x <= 5;
     }
 
     @Override

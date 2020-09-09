@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (checkPoint(calculatedX, calculatedY)) {
                 setDot(x, y, svg);
-
-                $("#input-y-text").val(calculatedY.toFixed(0));
+                $("#input-y-text").val(calculatedY.toFixed(1));
                 send(calculatedX.toFixed(1), calculatedY.toFixed(1), r);
             }
         }
@@ -31,15 +30,23 @@ function getMousePosition(svg, event) {
 }
 
 function setDot(x, y, svg) {
-    svg.insertAdjacentHTML("beforeend", `<circle class="clickDots" r="5" cx="${x}" cy="${y}"></circle>`);
+    svg.insertAdjacentHTML("beforeEnd", `<circle class="clickDots" r="5" cx="${x}" cy="${y}"></circle>`);
 }
 
 function checkPoint(x, y) {
-    if (x >= -4 && x <= 4 && y >= -3 && y <= 5) {
-        document.getElementById('error').innerHTML = "<br><br>";
+    const error = $('#error');
+    if (x >= -3 && x <= 5 && y >= -3 && y <= 3) {
+        error.html("");
+        error.css("margin-bottom", "58px");
         return true;
     } else {
-        document.getElementById('error').innerHTML = "-4<=x<=4 | -3<=y<=5 <br>";
+        if (y < -3 || y > 3) {
+            error.html("Значение Y должно быть в диапазоне [-3;3]");
+            error.css("margin-bottom", "0px");
+            return false;
+        }
+        error.html("Значение X должно быть в диапазоне [-3;5]");
+        error.css("margin-bottom", "0px");
         return false;
     }
 }
