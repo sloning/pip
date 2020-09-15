@@ -62,7 +62,8 @@
                 <text class="coor-text" fill="black" x="160" y="255">-R</text>
 
                 <!-- first figure square-->
-                <polygon class="svg-figure square" fill="blue" fill-opacity="0.3" points="150,100 150,150 250,150 250,100"
+                <polygon class="svg-figure square" fill="blue" fill-opacity="0.3"
+                         points="150,100 150,150 250,150 250,100"
                          stroke="blue"></polygon>
 
                 <!-- second figure circle -->
@@ -96,7 +97,7 @@
                     <div class="input-titles">
                         <span>Введите Y координату</span>
                     </div>
-                    <input autocomplete="off" id="input-y-text" oninput="checkY()" required type="text"> <br>
+                    <input maxlength="5" autocomplete="off" id="input-y-text" oninput="checkY()" required type="text"> <br>
                 </div>
                 <div id="input-r">
                     <div class="input-titles">

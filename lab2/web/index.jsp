@@ -97,7 +97,8 @@
                     <div class="input-titles">
                         <span>Введите Y координату</span>
                     </div>
-                    <input autocomplete="off" id="input-y-text" oninput="checkY()" required type="text"> <br>
+                    <input maxlength="5" autocomplete="off" id="input-y-text" oninput="checkY()" required type="text">
+                    <br>
                 </div>
                 <div id="input-r">
                     <div class="input-titles">

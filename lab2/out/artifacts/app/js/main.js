@@ -119,7 +119,7 @@ function send(x, y, r) {
         let table = $('#response-table > tbody');
         table.empty();
         table.append(response);
-    }).catch(err => fetchErr("Ошибка HTTP ${err.textContent}. Повторите попытку позже.")); //TODO обработка ошибок
+    }).catch(err => fetchErr(`Ошибка HTTP ${err.textContent}. Повторите попытку позже.`));
 }
 
 function fetchErr(str) {
@@ -189,5 +189,5 @@ function resetButtonDo() {
         method: "POST",
         headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
         body: request
-    }).catch(err => fetchErr("Ошибка HTTP ${err.textContent}. Повторите попытку позже."));
+    }).catch(err => fetchErr(`Ошибка HTTP ${err.textContent}. Повторите попытку позже.`));
 }
