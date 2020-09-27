@@ -1,19 +1,19 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <title>ПИП</title>
     <meta charset="UTF-8">
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png">
 </head>
-
 <body>
 <script src="js/jQuery-3.5.1.js"></script>
 <script src="js/main.js"></script>
 <script src="js/graph.js"></script>
-
 <header>
     <div id="lab">
         <span id="variant">Вариант: 8981</span>
@@ -22,7 +22,6 @@
         <span id="me">Кузнецов Владислав, P3213</span>
     </div>
 </header>
-
 <main>
     <div id="main-section">
         <div id="main-svg-picture">
@@ -75,6 +74,12 @@
                          stroke="red"></polygon>
 
                 <circle r="0" cx="150" cy="150" id="target-dot"></circle>
+
+                <c:if test="${sessionScope.hitHistory != null}">
+                    <c:forEach var="circle" items="${sessionScope.hitHistory}">
+                        <circle class="clickDots" r="5" cx="${circle.svgX}" cy="${circle.svgY}"></circle>
+                    </c:forEach>
+                </c:if>
             </svg>
         </div>
         <div id="user-input">
@@ -122,6 +127,18 @@
     </div>
     <div id="response">
         <table id="response-table">
+            <tbody>
+            <c:if test="${sessionScope.hitHistory != null}">
+                <c:forEach var="point" items="${sessionScope.hitHistory}">
+                    <tr>
+                        <td>${point.x}</td>
+                        <td>${point.y}</td>
+                        <td>${point.r}</td>
+                        <td>${point.popadanie}</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+            </tbody>
             <thead>
             <tr>
                 <th>
@@ -136,14 +153,8 @@
                 <th>
                     Результат
                 </th>
-                <th>
-                    Время
-                </th>
             </tr>
             </thead>
-            <tbody>
-
-            </tbody>
         </table>
     </div>
 </main>

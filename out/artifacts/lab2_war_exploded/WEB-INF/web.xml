@@ -11,6 +11,6 @@
 
     <servlet>
         <servlet-name>Test</servlet-name>
-        <servlet-class>ControllerServlet</servlet-class>
+        <servlet-class>lab.ControllerServlet</servlet-class>
     </servlet>
 </web-app>

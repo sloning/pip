@@ -1,3 +1,5 @@
+package lab;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,7 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "ControllerServlet - определяет тип запроса, и, в зависимости от того, содержит ли запрос информацию " +
+        return "lab.ControllerServlet - определяет тип запроса, и, в зависимости от того, содержит ли запрос информацию " +
                 "о координатах точки и радиусе, делегирует его обработку стартовой jsp-странице или AreaCheckServlet-у. " +
                 "Все запросы внутри приложения должны передаваться этому сервлету, остальные сервлеты с веб-страниц " +
                 "напрямую вызываться не должны.";

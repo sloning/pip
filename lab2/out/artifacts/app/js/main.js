@@ -103,7 +103,6 @@ function hideDot() {
 function validateAndSend() {
     if (checkX() && checkY() && checkR()) {
         send(getX(), getY(), getR());
-        console.log(getX(), getY(), getR());
     }
 }
 
@@ -116,9 +115,7 @@ function send(x, y, r) {
         headers: {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"},
         body: request
     }).then(response => response.text()).then(function (response) {
-        let table = $('#response-table > tbody');
-        table.empty();
-        table.append(response);
+        window.location.replace('result.jsp');
     }).catch(err => fetchErr(`Ошибка HTTP ${err.textContent}. Повторите попытку позже.`));
 }
 
@@ -167,14 +164,14 @@ function getR() {
 }
 
 function resetButtonDo() {
-    const list = $('input');
+    const list = $('.xRadio');
     for (let i = 0; i < list.length; i++) {
-        if (list[i].type === 'checkbox') {
-            list[i].checked = false;
-        } else {
-            list[i].value = "";
-        }
+        list[i].checked = false;
     }
+
+    $('#input-y-text').val('');
+    rValue = null;
+
     const error = $('#error');
     error.html("");
     error.css("margin-bottom", "58px");

@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let calculatedX = ((x - 150) / 100) * r;
             let calculatedY = -((y - 150) / 100) * r;
+            $("#input-y-text").val(calculatedY.toFixed(1));
+            hideDot();
 
             if (checkPoint(calculatedX, calculatedY)) {
+                hideDot();
                 setDot(x, y, svg);
-                $("#input-y-text").val(calculatedY.toFixed(1));
                 send(calculatedX.toFixed(1), calculatedY.toFixed(1), r);
             }
         }

@@ -1,3 +1,5 @@
+package lab;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,14 +9,20 @@ public class Point {
     private final double x;
     private final double y;
     private final double r;
+    private final double svgX;
+    private final double svgY;
     private String popadanie = "";
 
     public Point(double x, double y, double r) {
         this.x = x;
         this.y = y;
         this.r = r;
+
         if (isValid()) popadanie = "Попадание";
         else popadanie = "Промах";
+
+        svgX = x / r * 100 + 150;
+        svgY = -(y / r * 100 - 150);
     }
 
     private boolean isValid() {
@@ -49,12 +57,19 @@ public class Point {
         return popadanie;
     }
 
+    public double getSvgX() {
+        return svgX;
+    }
+
+    public double getSvgY() {
+        return svgY;
+    }
+
     @Override
     public String toString() {
-        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String formattedDate=formatter.format(new Date());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = formatter.format(new Date());
 
-        return "<tr><td>" + x + "</td><td>" + y + "</td><td>" + (int) r + "</td><td>" + popadanie + "</td><td>" +
-                formattedDate + "</td>";
+        return "<tr><td>" + x + "</td><td>" + y + "</td><td>" + (int) r + "</td><td>" + popadanie + "</td></tr>";
     }
 }

@@ -1,9 +1,10 @@
+package lab;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,20 +18,22 @@ public class AreaCheckerServlet extends HttpServlet {
             session.invalidate();
         } else {
             resp.setContentType("text/html;charset=UTF-8");
-            List<String> tableRows = (List<String>) session.getAttribute("tableRows");
-            if (tableRows == null) {
-                tableRows = new ArrayList<>();
-                session.setAttribute("tableRows", tableRows);
+            List<Point> hitHistory = (List<Point>) session.getAttribute("hitHistory");
+            if (hitHistory == null) {
+                hitHistory = new ArrayList<Point>();
+                session.setAttribute("hitHistory", hitHistory);
             }
             try {
                 double x = Double.parseDouble(req.getParameter("x"));
                 double y = Double.parseDouble(req.getParameter("y"));
                 double r = Double.parseDouble(req.getParameter("r"));
-                try (PrintWriter writer = resp.getWriter()) {
-                    if (checkData(x, y, r)) {
-                        tableRows.add(new Point(x, y, r).toString());
-                        for (String tableRow : tableRows) writer.println(tableRow);
-                    } else resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+                if (checkData(x, y, r)) {
+                    Point newPoint = new Point(x, y, r);
+                    hitHistory.add(newPoint);
+                    session.setAttribute("newPoint", newPoint);
+                    req.getRequestDispatcher("/result.jsp").forward(req, resp);
+                } else {
+                    resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
                 }
             } catch (Exception e) {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
