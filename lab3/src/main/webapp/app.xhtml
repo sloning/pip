@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="templates/layout.xhtml">
+    <ui:define name="head">
+        <title>Приложение</title>
+        <h:outputStylesheet name="css/app.css"/>
+    </ui:define>
+    <ui:define name="content">
+        <div class="main">
+            <div class="row">
+                <svg class="col-sm" height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Оси со стрелками -->
+                    <line class="axis" stroke="black" x1="0" x2="300" y1="150" y2="150"/>
+                    <line class="axis" stroke="black" x1="150" x2="150" y1="0" y2="300"/>
+                    <polygon fill="black" points="150,0 144,15 156,15" stroke="black"/>
+                    <polygon fill="black" points="300,150 285,156 285,144" stroke="black"/>
+                    <text fill="black" class="coor-line" x="280" y="140">X</text>
+                    <text fill="black" class="coor-line" x="160" y="20">Y</text>
+
+                    <!-- Засечки -->
+                    <line class="coor-line" stroke="black" x1="200" x2="200" y1="155" y2="145"/>
+                    <line class="coor-line" stroke="black" x1="250" x2="250" y1="155" y2="145"/>
+
+                    <line class="coor-line" stroke="black" x1="50" x2="50" y1="155" y2="145"/>
+                    <line class="coor-line" stroke="black" x1="100" x2="100" y1="155" y2="145"/>
+
+                    <line class="coor-line" stroke="black" x1="145" x2="155" y1="100" y2="100"/>
+                    <line class="coor-line" stroke="black" x1="145" x2="155" y1="50" y2="50"/>
+
+                    <line class="coor-line" stroke="black" x1="145" x2="155" y1="200" y2="200"/>
+                    <line class="coor-line" stroke="black" x1="145" x2="155" y1="250" y2="250"/>
+
+                    <!-- Подписи к засечкам -->
+                    <text class="coor-text" fill="black" x="195" y="140">R/2</text>
+                    <text class="coor-text" fill="black" x="248" y="140">R</text>
+
+                    <text class="coor-text" fill="black" x="40" y="140">-R</text>
+                    <text class="coor-text" fill="black" x="90" y="140">-R/2</text>
+
+                    <text class="coor-text" fill="black" x="160" y="105">R/2</text>
+                    <text class="coor-text" fill="black" x="160" y="55">R</text>
+
+                    <text class="coor-text" fill="black" x="160" y="205">-R/2</text>
+                    <text class="coor-text" fill="black" x="160" y="255">-R</text>
+
+                    <!-- square -->
+                    <polygon class="svg-figure square" fill="blue" fill-opacity="0.3"
+                             points="50,250 50,150 150,150 150,250"
+                             stroke="blue"/>
+
+                    <!-- circle -->
+                    <path class="svg-figure circle" d="m 150 150 h 50 a 50 50 0 0 1 -50 50 v -50 z " fill="green"
+                          fill-opacity="0.3" stroke="green"/>
+
+                    <!-- figure -->
+                    <polygon class="svg-figure triangle" fill="red" fill-opacity="0.3"
+                             points="50,150 150,100 150,150"
+                             stroke="red"/>
+
+                    <circle r="0" cx="150" cy="150" id="target-dot"/>
+                </svg>
+                <div class="col-sm">
+                    <h2 class="text_center" id="inputs_title">Выберите координаты</h2>
+                    <h:form>
+                        <H3 class="text_center">X</H3>
+                        <div class="commandLinks margin_bottom">
+                            <table class="d-flex justify-content-center">
+                                <tr>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value="-3"
+                                                       onclick="setX(-3)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value="-2"
+                                                       onclick="setX(-2)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value="-1"
+                                                       onclick="setX(-1)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 0"
+                                                       onclick="setX(0)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 1"
+                                                       onclick="setX(1)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 2"
+                                                       onclick="setX(2)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 3"
+                                                       onclick="setX(3)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 4"
+                                                       onclick="setX(4)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                    <td>
+                                        <h:commandLink styleClass="btn btn-light btn-lg btn-block" value=" 5"
+                                                       onclick="setX(5)">
+                                            <f:ajax event="click"/>
+                                        </h:commandLink>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <H3 class="text_center">Y</H3>
+                        <div class="inputText d-flex justify-content-center margin_bottom">
+                            <h:inputText styleClass="form-control" id="input-y-text" maxlength="5" required="true"/>
+                        </div>
+                        <H3 class="text_center">R</H3>
+                        <div class="d-flex justify-content-center margin_bottom">
+                            <h:selectOneRadio onchange="setR(this.value)" enabledClass="rRadio"
+                                              layout="grid" columns="1" required="true">
+                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                <f:selectItem itemValue="1.5" itemLabel="1.5"/>
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="2.5" itemLabel="2.5"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                            </h:selectOneRadio>
+                        </div>
+                        <div class="row margin_bottom" id="buttons">
+                            <p:remoteCommand process="@this" partialSubmit="true" name="sendRequest"
+                                             update="resultTable" action="#{mainBean.addToList}"/>
+                            <button class="col-sm btn btn-primary" id="checkButton" type="button">Проверить</button>
+                            <p:remoteCommand process="@this" partialSubmit="true" name="sendReset" update="resultTable"
+                                             action="#{mainBean.removeList}"/>
+                            <button type="button" class="col-sm btn btn-light" id="reset-button"
+                                    onclick="resetButtonDo()">Прибрать за собой
+                            </button>
+                        </div>
+                    </h:form>
+                    <div id="error"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <h:dataTable id="resultTable" styleClass="table table-striped" value="#{mainBean.points}" var="point">
+                    <h:column>
+                        <f:facet name="header">X</f:facet>
+                        #{point.x}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        #{point.y}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">R</f:facet>
+                        #{point.r}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Результат</f:facet>
+                        #{point.popadanie}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center margin_bottom">
+            <h:form>
+                <h:commandButton styleClass="col-sm btn btn-light" value="Перейти на главную страницу" action="index"/>
+            </h:form>
+        </div>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript name="js/main.js"/>
+        <h:outputScript name="js/graph.js"/>
+    </ui:define>
+</ui:composition>
+</html>

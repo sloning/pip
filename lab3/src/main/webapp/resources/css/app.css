@@ -1,0 +1,28 @@
+#error {
+    padding-bottom: 50px;
+    color: red;
+    font-size: 20px;
+    text-align: center
+}
+
+circle {
+    transition: all 1s;
+}
+
+#target-dot {
+    fill: chartreuse;
+}
+
+.text_center {
+    text-align: center;
+}
+
+.margin_bottom {
+    margin-bottom: 5%;
+}
+
+.rRadio {
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+}

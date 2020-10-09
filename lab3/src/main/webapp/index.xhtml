@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="templates/layout.xhtml">
+    <ui:define name="head">
+        <title>Главная</title>
+    </ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-sm">
+                <h1 class="d-flex justify-content-center" id="clock_title">Часики обновляются каждые 11 секунд:</h1>
+                <h1 class="d-flex justify-content-center" id="clock"></h1>
+                <h:form styleClass="d-flex justify-content-center">
+                    <h:commandButton styleClass="btn btn-primary" value="Перейти на страницу приложения" action="app"/>
+                </h:form>
+            </div>
+        </div>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript name="js/clock.js"/>
+    </ui:define>
+</ui:composition>
+</html>

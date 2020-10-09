@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <h:head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+              crossorigin="anonymous"/>
+        <link rel="shortcut icon" href="#{resource['images/favicon.png']}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <ui:insert name="head">
+            Побочные meta-теги
+        </ui:insert>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div style="margin-bottom: 5%" class="row" id="header">
+                <div class="col-sm" id="lab">
+                    <H3 id="variant">Вариант: 10287</H3>
+                </div>
+                <div class="col-sm" id="info">
+                    <H3 style="float: right" id="me">Кузнецов Владислав, P3213</H3>
+                </div>
+            </div>
+            <ui:insert name="content">
+                Содержимое страницы
+            </ui:insert>
+        </div>
+    </h:body>
+</f:view>
+</html>

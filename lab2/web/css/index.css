@@ -69,6 +69,10 @@ circle {
     width: 150px;
 }
 
+.rButton:focus {
+    background-color: red;
+}
+
 #error {
     color: red;
     display: flex;
