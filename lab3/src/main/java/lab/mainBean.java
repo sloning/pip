@@ -13,9 +13,6 @@ import java.util.Objects;
 public class mainBean implements Serializable {
     private final DBWorker dbWorker = new DBWorker();
     private List<Point> points;
-    private String x;
-    private String y;
-    private String r;
 
     public mainBean() {
     }
@@ -47,7 +44,7 @@ public class mainBean implements Serializable {
         Statement statement = dbWorker.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery("select * from points where owner = '" + owner + "'");
         if (!resultSet.next()) {
-            return new ArrayList<Point>();
+            return new ArrayList<>();
         } else {
             do {
                 double x = resultSet.getDouble("x");
@@ -70,30 +67,6 @@ public class mainBean implements Serializable {
 
     public List<Point> getPoints() {
         return points;
-    }
-
-    public String getX() {
-        return x;
-    }
-
-    public void setX(String x) {
-        this.x = x;
-    }
-
-    public String getY() {
-        return y;
-    }
-
-    public void setY(String y) {
-        this.y = y;
-    }
-
-    public String getR() {
-        return r;
-    }
-
-    public void setR(String r) {
-        this.r = r;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.Objects;
 import static java.lang.Math.sqrt;
 
 public class Point implements Serializable {
-    private double x, y, r, svgX, svgY;
+    private double x, y, r;
     private String popadanie = "";
     private String owner = "";
 
@@ -18,9 +18,6 @@ public class Point implements Serializable {
 
         if (isValid()) popadanie = "Попадание";
         else popadanie = "Промах";
-
-        svgX = x / r * 100 + 150;
-        svgY = -(y / r * 100 - 150);
     }
 
     public Point() {
@@ -64,22 +61,6 @@ public class Point implements Serializable {
 
     public void setR(double r) {
         this.r = r;
-    }
-
-    public double getSvgX() {
-        return svgX;
-    }
-
-    public void setSvgX(double svgX) {
-        this.svgX = svgX;
-    }
-
-    public double getSvgY() {
-        return svgY;
-    }
-
-    public void setSvgY(double svgY) {
-        this.svgY = svgY;
     }
 
     public String getPopadanie() {

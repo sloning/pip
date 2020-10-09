@@ -48,6 +48,8 @@ document.getElementById("checkButton").onclick = function () {
             name: "R-value",
             value: getR()
         }]);
+        let dotInfo = showDot();
+        setDot(dotInfo.x, dotInfo.y, dotInfo.color);
     }
 };
 
@@ -105,6 +107,7 @@ function getY() {
 function setR(value) {
     rValue = value;
     showDot();
+    redrawDots();
 }
 
 function getR() {
@@ -128,20 +131,26 @@ function showDot() {
     let x = getX();
     let r = getR();
 
+    let calculatedX;
+    let calculatedY;
     if (!isNaN(y) && r !== null && x !== null) {
-        let calculatedX = 2 * (x * 50 / r) + 150;
-        let calculatedY = -(((y * 50 * 2) / r) - 150);
+        calculatedX = 2 * (x * 50 / r) + 150;
+        calculatedY = -(((y * 50 * 2) / r) - 150);
 
         let dotTarget = $("#target-dot");
         dotTarget.attr("r", 5);
         dotTarget.attr("cy", calculatedY);
         dotTarget.attr("cx", calculatedX);
     }
+    return {
+        x: calculatedX,
+        y: calculatedY,
+        color: isPopadanie(x, y, r)
+    };
 }
 
 function hideDot() {
-    let dotTarget = $("#target-dot");
-    dotTarget.attr("r", 0);
+    $("#target-dot").attr("r", 0);
 }
 
 function resetButtonDo() {
@@ -149,7 +158,11 @@ function resetButtonDo() {
     document.getElementById("j_idt10:input-y-text").value = "";
     xValue = null;
     rValue = null;
-    document.querySelector('input[name="j_idt10:j_idt31"]:checked').checked = false;
+    try {
+        document.querySelector('input[name="j_idt10:j_idt31"]:checked').checked = false;
+    } catch (error) {
+    }
+    hideDot();
     $(".clickDots").remove();
     sendReset();
 }
