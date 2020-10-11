@@ -1,42 +1,22 @@
-package lab;
+package models.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
-
-import static java.lang.Math.sqrt;
 
 public class Point implements Serializable {
     private double x, y, r;
     private String popadanie = "";
     private String owner = "";
 
-    public Point(String owner, double x, double y, double r) {
+    public Point(double x, double y, double r, String owner, String popadanie) {
         this.x = x;
         this.y = y;
         this.r = r;
         this.owner = owner;
-
-        if (isValid()) popadanie = "Попадание";
-        else popadanie = "Промах";
+        this.popadanie = popadanie;
     }
 
     public Point() {
-    }
-
-    private boolean isValid() {
-        return checkSquare() || checkTriangle() || checkCircle();
-    }
-
-    private boolean checkSquare() {
-        return x <= 0 && x >= -r && y <= 0 && y >= -r;
-    }
-
-    private boolean checkTriangle() {
-        return x <= 0 && x >= -r && y <= (r + x) / 2 && y >= 0;
-    }
-
-    private boolean checkCircle() {
-        return sqrt(x * x + y * y) <= r / 2 && y <= 0 && x >= 0;
     }
 
     public double getX() {

@@ -152,7 +152,7 @@
                         </div>
                         <div class="row margin_bottom" id="buttons">
                             <p:remoteCommand process="@this" partialSubmit="true" name="sendRequest"
-                                             update="resultTable" action="#{mainBean.addToList}"/>
+                                             update="resultTable" action="#{mainBean.addNewPoint}"/>
                             <button class="col-sm btn btn-primary" id="checkButton" type="button">Проверить</button>
                             <p:remoteCommand process="@this" partialSubmit="true" name="sendReset" update="resultTable"
                                              action="#{mainBean.removeList}"/>
