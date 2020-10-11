@@ -15,7 +15,6 @@ public class PointValidator implements IPointValidator {
         validateX(x);
         validateY(y);
         validateR(r);
-        log.info("All values are valid");
     }
 
     private void validateX(Double x) throws ValidationException {

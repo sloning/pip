@@ -1,13 +1,11 @@
 package DBServices.DBStograges;
 
 import models.storages.IStorage;
-import servicesClasses.factories.exceptions.DataParseException;
-import servicesClasses.validators.exceptions.ValidationException;
 
 import java.sql.SQLException;
 
 public interface IDBStorage<Entity> {
-    IStorage<Entity> getListFromDB(String owner) throws SQLException, DataParseException, ValidationException;
+    IStorage<Entity> getListFromDB(String owner) throws SQLException;
 
     void removeList(String owner) throws SQLException;
 

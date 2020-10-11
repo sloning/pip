@@ -1,13 +1,14 @@
-package lab;
+package DBServices;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBWorker {
-    private static final String DB_URL = "jdbc:postgresql://127.0.0.1:5433/pip";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5433/pip";
     private static final String USER = "postgres";
     private static final String PASS = "vlad";
+
     private static Connection connection;
 
     public DBWorker() {

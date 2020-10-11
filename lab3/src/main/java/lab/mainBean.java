@@ -5,8 +5,6 @@ import models.entities.Point;
 import models.storages.IStorage;
 import models.storages.PointsStorage;
 import servicesClasses.factories.ResultEntityFactory;
-import servicesClasses.factories.exceptions.DataParseException;
-import servicesClasses.validators.exceptions.ValidationException;
 
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
@@ -24,7 +22,7 @@ public class mainBean implements Serializable {
     public mainBean() {
     }
 
-    public void addNewPoint() throws SQLException, DataParseException, ValidationException {
+    public void addNewPoint() throws SQLException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Map<String, String> params = facesContext.getExternalContext().getRequestParameterMap();
         ResultEntityFactory resultEntityFactory = new ResultEntityFactory();
@@ -37,11 +35,7 @@ public class mainBean implements Serializable {
         Point newPoint = null;
         try {
             newPoint = resultEntityFactory.createNewPoint(owner, x, y, r);
-        } catch (DataParseException exception) {
-            log.info("Parse exception while adding new point");
-            return;
-        } catch (ValidationException exception) {
-            log.info("Validation exception while adding new point");
+        } catch (Exception exception) {
             return;
         }
 
@@ -54,10 +48,11 @@ public class mainBean implements Serializable {
         String owner = facesContext.getExternalContext().getSessionId(true);
         dbStorage.removeList(owner);
         points.clear();
+        log.info("Storage cleared");
     }
 
     public List<Point> getPoints() {
-        return points.getPointsList();
+        return points.getList();
     }
 
     @Override

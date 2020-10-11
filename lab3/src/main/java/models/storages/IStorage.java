@@ -5,7 +5,7 @@ import java.util.List;
 public interface IStorage<Entity> {
     void addNewPoint(Entity entity);
 
-    List<Entity> getPointsList();
+    List<Entity> getList();
 
     void clear();
 }

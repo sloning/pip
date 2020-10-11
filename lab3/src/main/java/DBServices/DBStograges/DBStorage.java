@@ -5,8 +5,6 @@ import models.entities.Point;
 import models.storages.IStorage;
 import models.storages.PointsStorage;
 import servicesClasses.factories.ResultEntityFactory;
-import servicesClasses.factories.exceptions.DataParseException;
-import servicesClasses.validators.exceptions.ValidationException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,11 +16,13 @@ public class DBStorage implements IDBStorage<Point> {
     private final DBWorker dbWorker = new DBWorker();
 
     @Override
-    public IStorage<Point> getListFromDB(String owner) throws SQLException, DataParseException, ValidationException {
+    public IStorage<Point> getListFromDB(String owner) throws SQLException {
         ResultEntityFactory resultEntityFactory = new ResultEntityFactory();
         IStorage<Point> newListFromDB = new PointsStorage();
+
         Statement statement = dbWorker.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery("select * from points where owner = '" + owner + "'");
+
         if (!resultSet.next()) {
             return new PointsStorage();
         } else {
@@ -34,17 +34,15 @@ public class DBStorage implements IDBStorage<Point> {
                 Point newPointFromDB = null;
                 try {
                     newPointFromDB = resultEntityFactory.createNewPoint(owner, x, y, r);
-                } catch (DataParseException exception) {
-                    log.info("Parse exception while creating list from db");
-                    continue;
-                } catch (ValidationException exception) {
-                    log.info("Validation exception while creating list from db");
+                } catch (Exception e) {
                     continue;
                 }
+
                 newListFromDB.addNewPoint(newPointFromDB);
             } while (resultSet.next());
         }
         resultSet.close();
+
         return newListFromDB;
     }
 
@@ -61,6 +59,6 @@ public class DBStorage implements IDBStorage<Point> {
         statement.executeUpdate("insert into points(owner, x, y, r) " +
                 "values ('" + point.getOwner() + "', '" + point.getX() + "', '" + point.getY() + "', '" +
                 point.getR() + "');");
-        log.info("Point added to db");
+        log.info("Point was added to db");
     }
 }

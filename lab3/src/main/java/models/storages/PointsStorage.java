@@ -16,7 +16,7 @@ public class PointsStorage implements IStorage<Point> {
         pointsList.add(point);
     }
 
-    public List<Point> getPointsList() {
+    public List<Point> getList() {
         return pointsList;
     }
 
