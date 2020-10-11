@@ -32,11 +32,11 @@ public class mainBean implements Serializable {
     }
 
     public void removeList() throws SQLException {
-        System.out.println("CLEARED");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Statement statement = dbWorker.getConnection().createStatement();
         statement.executeUpdate("delete from points where owner = '" + facesContext.getExternalContext().getSessionId(true) + "';");
         points.clear();
+        System.out.println("CLEARED");
     }
 
     private List<Point> getListFromDB(String owner) throws SQLException {
@@ -48,14 +48,22 @@ public class mainBean implements Serializable {
         } else {
             do {
                 double x = resultSet.getDouble("x");
+                x = round(x);
                 double y = resultSet.getDouble("y");
+                y = round(y);
                 double r = resultSet.getDouble("r");
+                r = round(r);
                 Point newPointFromDB = new Point(owner, x, y, r);
                 newListFromDB.add(newPointFromDB);
             } while (resultSet.next());
         }
         resultSet.close();
         return newListFromDB;
+    }
+
+    private double round(double d) {
+        d = (double) ((int) (d * 100)) / (100);
+        return d;
     }
 
     private void addNewPointToDB(Point newPoint) throws SQLException {
