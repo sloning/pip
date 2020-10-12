@@ -2,8 +2,6 @@ package lab;
 
 import DBServices.DBStograges.DBStorage;
 import models.entities.Point;
-import models.storages.IStorage;
-import models.storages.PointsStorage;
 import servicesClasses.factories.ResultEntityFactory;
 
 import javax.faces.context.FacesContext;
@@ -17,7 +15,6 @@ import java.util.logging.Logger;
 public class mainBean implements Serializable {
     private final Logger log = Logger.getLogger(String.valueOf(mainBean.class));
     private final DBStorage dbStorage = new DBStorage();
-    private IStorage<Point> points = new PointsStorage();
 
     public mainBean() {
     }
@@ -40,36 +37,34 @@ public class mainBean implements Serializable {
         }
 
         dbStorage.addNewEntityToDB(newPoint);
-        points = dbStorage.getListFromDB(owner);
     }
 
     public void removeList() throws SQLException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String owner = facesContext.getExternalContext().getSessionId(true);
         dbStorage.removeList(owner);
-        points.clear();
         log.info("Storage cleared");
     }
 
-    public List<Point> getPoints() {
-        return points.getList();
+    public List<Point> getPoints() throws SQLException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        String owner = facesContext.getExternalContext().getSessionId(true);
+        return dbStorage.getListFromDB(owner).getList();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (!(o instanceof mainBean)) return false;
-        mainBean that = (mainBean) o;
-        return Objects.equals(points, that.points);
+        return this == o;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(points);
+        return Objects.hash(dbStorage);
     }
 
     @Override
     public String toString() {
-        return points.toString();
+        return "Controller Bean";
     }
 }
