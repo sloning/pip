@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="JPAUNIT">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>models.entities.Point</class>
+        <class>models.entities.User</class>
+
+        <properties>
+            <!-- Connection settings -->
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+            <!--            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:pip" />-->
+            <!--            <property name="hibernate.connection.username" value="vlad" />-->
+            <!--            <property name="hibernate.connection.password" value="oracle" />-->
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:orbis"/>
+
+
+            <!-- SQL dialect -->
+            <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect" />-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+
+            <!-- Print executed SQL to stdout -->
+            <property name="show_sql" value="true"/>
+
+            <!-- Drop and re-create all database on startup -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
