@@ -5,18 +5,31 @@ import SecondPage from "./SecondPage";
 import history from "../utils/history";
 import {Router, Switch} from "react-router-dom";
 import {connect} from "react-redux";
+import {setLogin} from "../actions/userActions";
 
 export class App extends React.Component {
+    constructor(props) {
+        super(props);
+
+        let login = false;
+        if (localStorage.getItem("login") === "true") {
+            login = true;
+            this.props.setLogin(true);
+        }
+        this.state = {
+            isLoggedIn: login,
+        }
+    }
+
     render() {
         return (
             <Router history={history}>
                 <div>
                     <Switch>
                         <Route history={history} exact path='/lab4' component={FirstPage}/>
-                        <PrivateRoute history={history} exact path='/lab4/app' isLogged={this.props.login}
+                        <PrivateRoute history={history} exact path='/lab4/app' isLogged={this.state.isLoggedIn}
                                       component={SecondPage}/>
-                        <Route path="/" component={() => <div>page not found</div>}
-                        />
+                        <Route path="/" component={() => <div>page not found</div>}/>
                     </Switch>
                 </div>
             </Router>
@@ -25,17 +38,23 @@ export class App extends React.Component {
 }
 
 const PrivateRoute = ({component: Component, isLogged, ...rest}) => (
-    <Route {...rest} render={(props) => (
-        isLogged === true
-            ? <Component {...props} />
-            : <Redirect to="/"/>
+    <Route {...rest} render={props => (
+        isLogged
+            ? (<Component {...props} />)
+            : (<Redirect to="/lab4"/>)
     )}/>
 )
 
 function mapStateToProps(state) {
     return {
-        login: state.userReducer.login
+        login: state.userReducer.login,
     }
 }
 
-export default connect(mapStateToProps, null)(App)
+function mapDispatchToProps(dispatch) {
+    return {
+        setLogin: payload => dispatch(setLogin(payload)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

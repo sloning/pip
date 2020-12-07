@@ -3,7 +3,7 @@ import {Header} from "../components/Header";
 import Container from "react-bootstrap/cjs/Container";
 import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
-import Canvas from "./Canvas";
+import Canvas1 from "./Canvas1";
 import Inputs from "./Inputs";
 import Table from "../components/Table";
 import LogoutButton from "../components/LogoutButton";
@@ -16,9 +16,7 @@ export default class SecondPage extends React.Component {
                     <Header/>
                 </Row>
                 <Row style={{marginBottom: '5%'}}>
-                    <Col>
-                        <Canvas/>
-                    </Col>
+                    <Canvas1/>
                     <Col>
                         <Inputs/>
                     </Col>

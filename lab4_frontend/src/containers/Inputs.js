@@ -7,7 +7,8 @@ import Row from "react-bootstrap/cjs/Row";
 import Col from "react-bootstrap/cjs/Col";
 import {connect} from "react-redux";
 import Error from "../components/Error";
-import {addPoint, clearPoints, setError, setR} from "../actions/pointsActions";
+import {addPoint, clearPoints, setError, setIsTarget, setR, setTarget} from "../actions/pointsActions";
+import {URL} from "../utils/config";
 
 export class Inputs extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export class Inputs extends React.Component {
         this.showDot = this.showDot.bind(this);
     }
 
-    componentDidUpdate(prevProps: Readonly<P>, prevState: Readonly<S>, snapshot: SS) {
+    componentDidUpdate() {
         this.showDot();
     }
 
@@ -86,7 +87,7 @@ export class Inputs extends React.Component {
             };
             const formBody = Object.keys(details).map(key => encodeURIComponent(key) + "=" + encodeURIComponent(details[key])).join("&");
 
-            fetch("http://127.0.0.1:8981/lab4/api/points/newpoint", {
+            fetch(`${URL}/api/points/newpoint`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -117,9 +118,9 @@ export class Inputs extends React.Component {
         let rCell = newRow.insertCell(2);
         let resultCell = newRow.insertCell(3);
 
-        let xText = document.createTextNode(response.x);
-        let yText = document.createTextNode(response.y);
-        let rText = document.createTextNode(response.r);
+        let xText = document.createTextNode(response.x.toFixed(1));
+        let yText = document.createTextNode(response.y.toFixed(1));
+        let rText = document.createTextNode(response.r.toFixed(1));
         let resultText = document.createTextNode(response.result ? "Попадание" : "Промах");
 
         xCell.appendChild(xText);
@@ -175,7 +176,7 @@ export class Inputs extends React.Component {
         document.querySelector("tbody").innerHTML = "<tr><tr/>";
         this.clearError();
 
-        fetch("http://127.0.0.1:8080/~s283990/lab4/api/points/droppoints", {
+        fetch(`${URL}/api/points/droppoints`, {
             method: "POST",
             credentials: "include"
         }).then(response => console.log(response))
@@ -200,23 +201,24 @@ export class Inputs extends React.Component {
         let x = document.getElementById("xInput").value;
         let r = document.getElementById("rInput").value;
 
-        let calculatedX;
-        let calculatedY;
         if (x >= -5 && x <= 5 && r >= 1 && r <= 5 && x !== "" && r !== "") {
-            calculatedX = 2 * (x * 50 / r) + 150;
-            calculatedY = -(((y * 50 * 2) / r) - 150);
+            // calculatedX = 2 * (x * 50 / r) + 150;
+            // calculatedY = -(((y * 50 * 2) / r) - 150);
 
-            let dotTarget = document.getElementById("targetDot");
-            dotTarget.setAttribute("r", 5);
-            dotTarget.setAttribute("cy", calculatedY);
-            dotTarget.setAttribute("cx", calculatedX);
+            // let dotTarget = document.getElementById("targetDot");
+            // dotTarget.setAttribute("r", 5);
+            // dotTarget.setAttribute("cy", calculatedY);
+            // dotTarget.setAttribute("cx", calculatedX);
+            this.props.setTarget([x, y, r]);
+            this.props.setIsTarget(true);
         } else {
             this.hideDot();
         }
     }
 
     hideDot() {
-        document.getElementById("targetDot").setAttribute("r", 0);
+        // document.getElementById("targetDot").setAttribute("r", 0);
+        this.props.setIsTarget(false);
     }
 }
 
@@ -229,7 +231,9 @@ function mapDispatchToProps(dispatch) {
         setError: msg => dispatch(setError(msg)),
         setR: rValue => dispatch(setR(rValue)),
         setXYR: point => dispatch(addPoint(point)),
-        removeXYR: () => dispatch(clearPoints())
+        removeXYR: () => dispatch(clearPoints()),
+        setTarget: dot => dispatch(setTarget(dot)),
+        setIsTarget: is => dispatch(setIsTarget(is)),
     }
 }
 

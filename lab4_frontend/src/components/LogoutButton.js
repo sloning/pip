@@ -1,9 +1,10 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 import history from "../utils/history";
-import {clearPoints, removeR, setError} from "../actions/pointsActions";
+import {clearPoints, removeR, setError, setIsTarget} from "../actions/pointsActions";
 import {setLogin} from "../actions/userActions"
 import {connect} from "react-redux";
+import {URL} from "../utils/config";
 
 export class LogoutButton extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export class LogoutButton extends React.Component {
     }
 
     logout() {
-        fetch("http://127.0.0.1:8981/lab4/api/auth/logout", {
+        fetch(`${URL}/api/auth/logout`, {
             method: "POST",
             credentials: "include",
         }).catch(e => console.log(e));
@@ -32,6 +33,8 @@ export class LogoutButton extends React.Component {
         this.props.removeR();
         this.props.setLogin(false);
         this.props.setError("");
+        this.props.setIsTarget(false);
+        localStorage.setItem("login", "false");
         this.logout();
     }
 }
@@ -41,7 +44,8 @@ function mapDispatchToProps(dispatch) {
         removeXYR: () => dispatch(clearPoints()),
         removeR: () => dispatch(removeR()),
         setError: msg => dispatch(setError(msg)),
-        setLogin: payload => dispatch(setLogin(payload))
+        setLogin: payload => dispatch(setLogin(payload)),
+        setIsTarget: payload => dispatch(setIsTarget(payload))
     }
 }
 

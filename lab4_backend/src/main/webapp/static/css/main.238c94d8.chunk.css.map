@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "sources": [
+    "webpack://src/styles/main.css"
+  ],
+  "names": [],
+  "mappings": "AAAA,uBACI,yBACI,yBACJ,CACJ,CAEA,yBACI,yBACI,yBACJ,CACJ,CAEA,0BACI,yBACI,0BACJ,CACJ",
+  "file": "main.238c94d8.chunk.css",
+  "sourcesContent": [
+    "@media (min-width: 0px) {\r\n    .container, .container-sm {\r\n        max-width: 450px !important;\r\n    }\r\n}\r\n\r\n@media (min-width: 889px) {\r\n    .container, .container-sm {\r\n        max-width: 800px !important;\r\n    }\r\n}\r\n\r\n@media (min-width: 1095px) {\r\n    .container, .container-sm {\r\n        max-width: 1000px !important;\r\n    }\r\n}\r\n"
+  ]
+}

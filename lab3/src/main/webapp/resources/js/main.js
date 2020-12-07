@@ -115,13 +115,13 @@ function getR() {
 }
 
 function showError(errorText = "Произошла какая-то ошибка") {
-    const error = $('#error');
+    const error = $("#error");
     error.html(errorText);
     error.css("padding-bottom", "20px");
 }
 
 function clearError() {
-    const error = $('#error');
+    const error = $("#error");
     error.html('');
     error.css("padding-bottom", "50px");
 }
@@ -159,7 +159,11 @@ function resetButtonDo() {
     xValue = null;
     rValue = null;
     try {
-        document.querySelector('input[name="j_idt10:j_idt31"]:checked').checked = false;
+        document.querySelector("input[name="
+        j_idt31
+        "]:checked"
+    ).
+        checked = false;
     } catch (error) {
     }
     hideDot();

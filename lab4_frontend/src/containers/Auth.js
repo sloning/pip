@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import {setError, setLogin} from "../actions/userActions";
 import {addPoint} from "../actions/pointsActions";
 import LoginRegistrationChoose from "../components/LoginRegistrationChoose";
+import {URL} from "../utils/config";
 
 export class Auth extends React.Component {
     constructor(props) {
@@ -79,9 +80,9 @@ export class Auth extends React.Component {
 
         let url;
         if (this.props.type === "Зарегестрироваться") {
-            url = "http://127.0.0.1:8981/lab4/api/auth/signup"
+            url = `${URL}/api/auth/signup`;
         } else {
-            url = "http://127.0.0.1:8981/lab4/api/auth/signin";
+            url = `${URL}/api/auth/signin`;
         }
 
         fetch(url, {
@@ -94,18 +95,14 @@ export class Auth extends React.Component {
         }).then(response => {
             if (response.ok) {
                 this.clearError();
-                return response.json();
+                this.props.setLogin(true);
+                localStorage.setItem("login", "true");
+                history.push("/");
+                history.replace("/lab4/app")
             } else {
                 this.showError("Ошибка");
             }
         })
-            .then(response => {
-                for (let i = 0; i < response.points.length; i++) {
-                    this.props.addPoint([response.points[i].x, response.points[i].y, response.points[i].r]);
-                }
-                this.props.setLogin(true);
-                history.push("/lab4/app");
-            })
             .catch(e => console.log(e));
     }
 

@@ -23,7 +23,7 @@
 
     <managed-bean>
         <managed-bean-name>mainBean</managed-bean-name>
-        <managed-bean-class>lab.mainBean</managed-bean-class>
+        <managed-bean-class>lab.MainBean</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
 </faces-config>

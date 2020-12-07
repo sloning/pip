@@ -1,9 +1,11 @@
-import {ADD_POINT, CLEAR_POINTS, REMOVE_R, SET_ERROR, SET_R} from "../actions/pointsActions";
+import {ADD_POINT, CLEAR_POINTS, REMOVE_R, SET_ERROR, SET_IS_TARGET, SET_R, SET_TARGET} from "../actions/pointsActions";
 
 const initialState = {
     errorMsg: "",
     rValue: 0,
-    points: []
+    points: [],
+    targetDot: [],
+    isTarget: false
 }
 
 export default function pointsReducer(state = initialState, action) {
@@ -18,6 +20,10 @@ export default function pointsReducer(state = initialState, action) {
             return {...state, points: action.payload};
         case REMOVE_R:
             return {...state, rValue: action.payload};
+        case SET_TARGET:
+            return {...state, targetDot: action.payload};
+        case SET_IS_TARGET:
+            return {...state, isTarget: action.payload};
         default:
             return state;
     }

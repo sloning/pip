@@ -1,0 +1,10 @@
+<urlrewrite>
+    <!--    <rule>-->
+    <!--        <from>^/lab4/app$</from>-->
+    <!--        <to>index.html</to>-->
+    <!--    </rule>-->
+    <!--    <rule>-->
+    <!--        <from>^/lab4/$</from>-->
+    <!--        <to>index.html</to>-->
+    <!--    </rule>-->
+</urlrewrite>
