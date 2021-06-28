@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBWorker {
-    private static final String DB_URL = "jdbc:postgresql://localhost:5433/pip";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/pip";
     private static final String USER = "postgres";
-    private static final String PASS = "vlad";
+    private static final String PASS = "1234";
 
 //    private static final String DB_URL = "jdbc:postgresql://pg:5432/studs";
 //    private static final String USER = "s283990";

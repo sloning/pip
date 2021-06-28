@@ -10,18 +10,10 @@
         <class>models.entities.User</class>
 
         <properties>
-            <!-- Connection settings -->
-            <!--            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>-->
-            <!--            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:pip"/>-->
-            <!--            <property name="hibernate.connection.username" value="vlad"/>-->
-            <!--            <property name="hibernate.connection.password" value="oracle"/>-->
-            <!--            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:orbis"/>-->
-            <!--            <property name="hibernate.connection.username" value="s283990"/>-->
-            <!--            <property name="hibernate.connection.password" value="xtu365"/>-->
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/pip"/>
-            <property name="hibernate.connection.username" value="vlad"/>
-            <property name="hibernate.connection.password" value="vlad"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name="hibernate.connection.password" value=""/>
 
             <!-- SQL dialect -->
             <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect" />-->

@@ -1,8 +1,8 @@
 package lab;
 
-import DBServices.DBStograges.DBStorage;
+import DAO.DBStorage;
 import models.entities.Point;
-import servicesClasses.factories.ResultEntityFactory;
+import services.factories.ResultEntityFactory;
 
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
